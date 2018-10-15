@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +10,10 @@ namespace Assignment_5_1
     {
         static void Main(string[] args)
         {
+
         }
     }
-    class quadcopter_generic
+    class Quadcopter_generic
     {
         //I will just use the shorthand bt for bluetooth
         protected bool ir = false;
@@ -29,7 +30,7 @@ namespace Assignment_5_1
 
         protected string model_id = "generic object";
 
-        public void select_comm_method()
+        public void Select_comm_method()
         {
             if (snr_ir > snr_rf && snr_rf > snr_bt)
             {
@@ -44,14 +45,46 @@ namespace Assignment_5_1
                 bt = true;
             }
         }
-        public void disp_id()
+        public virtual void Disp_id()
         {
             Console.WriteLine("Model type is {}", model_id);
         }
 
-        public void set_position(int a, int b, int c)
+        public void Set_position(int a, int b, int c)
         {
             x = a; y = b; c = z;
         }
     }
+    class Quadcopter_ir : Quadcopter_generic
+    {
+        public override void Disp_id()
+        {
+            Console.WriteLine("getting ir quadcopter info");
+        }
+    }
+
+    class Quadcopter_ir_rf : Quadcopter_ir
+    {
+        public override void Disp_id()
+        {
+            Console.WriteLine("getting ir, rf quadcopter into");
+        }
+    }
+    class Quadcopter_rf : Quadcopter_generic
+    {
+        public override void Disp_id()
+        {
+            Console.WriteLine("getting rf quadcopter info");
+        }
+    }
+
+    class Quadcopter_ir_bt_rf : Quadcopter_ir_rf
+    {
+
+        public override void Disp_id()
+        {
+            Console.WriteLine("getting ir_bt_rf quadcopter info");
+        }
+    }
 }
+
